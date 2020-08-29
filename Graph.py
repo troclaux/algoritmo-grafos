@@ -24,10 +24,10 @@ class Graph:
         v1.add_neighbor(v2)
         v2.add_neighbor(v1)
 
-    def del_vertex():
-        # TODO
-        pass
-
+    def del_vertex(self, label):
+        v = self.vertex_set[label]
+        v.pop(label)
+        
     def compact():
         # TODO
         pass
