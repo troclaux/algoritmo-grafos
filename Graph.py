@@ -28,8 +28,8 @@ class Graph:
         v = self.vertex_set[label]
         v.pop(label)
         
-    def compact():
-        # TODO
+    def compact(self):
+        v = self.vertex_set
         pass
 
     def max_degree(self):
@@ -72,14 +72,14 @@ class Graph:
         pass
 
     def __str__(self):
-        s = '\n\n' + f'Grafo, grau máximo {self.max_degree()}' + '\n'
+        graphDescription = '\n\n' + f'Grafo, grau máximo {self.max_degree()}' + '\n'
 
         if self.is_undirected():
-            s += 'Não direcionado\n'
+            graphDescription += 'Não direcionado\n'
         else:
-            s += 'Direcionado\n'
+            graphDescription += 'Direcionado\n'
 
         for v in self.vertex_set.values():
-            s += v.__str__()
+            graphDescription += v.__str__()
 
-        return s
+        return graphDescription
