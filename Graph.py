@@ -19,6 +19,8 @@ class Graph:
     def add_edge(self, label1, label2):
         if label1 not in self.vertex_set or label2 not in self.vertex_set:
             print('Erro: um dos vértices não existe no grafo')
+        elif label1 in self.vertex_set[2] and label2 in self.vertex_set[1]:
+            print('Aresta ' + str(label1) + ' <-> ' + str(label2) + ' já existe')
         else:
             if label1 not in self.vertex_set[label2]:
                 self.vertex_set[label2].append(label1)
