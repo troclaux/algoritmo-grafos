@@ -17,11 +17,13 @@ class Graph:
             self.vertex_set[label1].append(label2)
 
     def add_edge(self, label1, label2):
-        if label1 in self.vertex_set and label2 in self.vertex_set:
-            self.vertex_set[label1].append(label2)
-            self.vertex_set[label2].append(label1)
-        else:
+        if label1 not in self.vertex_set or label2 not in self.vertex_set:
             print('Erro: um dos vértices não existe no grafo')
+        else:
+            if label1 not in self.vertex_set[label2]:
+                self.vertex_set[label2].append(label1)
+            if label2 not in self.vertex_set[label1]:
+                self.vertex_set[label1].append(label2)
 
     def del_vertex(self, label):
         self.vertex_set.pop(label)

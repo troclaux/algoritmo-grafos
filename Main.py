@@ -13,5 +13,6 @@ graph.add_arc(2,1)
 graph.add_arc(5,2)
 graph.add_arc(1,3)
 graph.add_arc(1,4)
+graph.add_edge(1,3)
 
 print(str(graph))
