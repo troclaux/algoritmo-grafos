@@ -76,10 +76,6 @@ class Graph:
 
         return subj
 
-    def is_connected(self):
-        # TO DO
-        pass
-
     def BFS(self, id):
         #print('executando BFS:\n')
         queue = [id]
@@ -92,6 +88,19 @@ class Graph:
                     queue.append(neighbor)
                     visited.append(neighbor)
                     
+    def is_connected(self):
+        for id in self.vertex_set:
+            queue = [id]
+            visited = [id]
+            while(queue):
+                id = queue.pop(0)
+                for neighbor in self.vertex_set[id]:
+                    if neighbor not in visited:
+                        queue.append(neighbor)
+                        visited.append(neighbor)
+            if len(visited) < len(self.vertex_set):
+                return False
+        return True
 
     def __str__(self):
         graphDescription = '\n' + f'Grafo, grau máximo {self.max_degree()} '
