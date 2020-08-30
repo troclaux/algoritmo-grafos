@@ -79,8 +79,7 @@ class Graph:
         pass """
 
     def __str__(self):
-        graphDescription = '\n\n' + f'Grafo, grau máximo {self.max_degree()}' + '\n'
-
+        graphDescription = '\n' + f'Grafo, grau máximo {self.max_degree()} '
         if self.is_undirected():
             graphDescription += 'Não direcionado\n'
         else:
