@@ -28,22 +28,27 @@ class Graph:
         v = self.vertex_set[label]
         v.pop(label)
         
-    def compact(self):
-        v = self.vertex_set
-        pass
-
+    """ def compact(self):
+        set = self.vertex_set
+        for i in range(0, len(set) + 1):
+            save = i
+            while set.get(i) is None:
+                if i <= len(set):
+                    i += 1
+            set.get(i)
+ """
     def max_degree(self):
         max_deg = 0
 
         for v in self.vertex_set.values():
-            max_deg = max(max_deg, len(v.nbhood))
+            max_deg = max(max_deg, len(v.neighbors))
 
         return max_deg
 
     def is_undirected(self):
         for v in self.vertex_set.values():
-            for u in v.nbhood.values():
-                if v not in u.nbhood.values():
+            for u in v.neighbors.values():
+                if v not in u.neighbors.values():
                     return False
         return True
 
@@ -54,7 +59,7 @@ class Graph:
             subj.add_vertex(v)
 
         for v in self.vertex_set.values():
-            for u in v.nbhood.values():
+            for u in v.neighbors.values():
                 v_subj = subj.vertex_set[v.label]
                 u_subj = subj.vertex_set[u.label]
 
@@ -63,13 +68,15 @@ class Graph:
 
         return subj
 
-    def is_connected():
+    def is_connected(self):
         # TODO
         pass
 
-    def BFS():
+    """ def BFS(self, id):
+        for vertex in self.vertex_set
+            
         # TODO
-        pass
+        pass """
 
     def __str__(self):
         graphDescription = '\n\n' + f'Grafo, grau máximo {self.max_degree()}' + '\n'
