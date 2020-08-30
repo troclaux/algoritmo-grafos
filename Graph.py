@@ -38,8 +38,8 @@ class Graph:
     def max_degree(self):
         max_deg = 0
 
-        for v in self.vertex_set.values():
-            max_deg = max(max_deg, len(v.neighbors))
+        for v in self.vertex_set.keys():
+            max_deg = max(max_deg, len(self.vertex_set[v]))
 
         return max_deg
 
