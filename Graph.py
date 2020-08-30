@@ -15,6 +15,7 @@ class Graph:
             print('Arco ' + str(label1) + ' -> ' + str(label2) + ' já existe')
         else:
             self.vertex_set[label1].append(label2)
+            self.vertex_set[label1].sort()
 
     def add_edge(self, label1, label2):
         if label1 not in self.vertex_set or label2 not in self.vertex_set:
@@ -24,8 +25,10 @@ class Graph:
         else:
             if label1 not in self.vertex_set[label2]:
                 self.vertex_set[label2].append(label1)
+                self.vertex_set[label2].sort()
             if label2 not in self.vertex_set[label1]:
                 self.vertex_set[label1].append(label2)
+                self.vertex_set[label1].sort()
 
     def del_vertex(self, label):
         self.vertex_set.pop(label)
@@ -34,7 +37,7 @@ class Graph:
                 self.vertex_set[v].remove(label)
         
     def compact(self):
-        # TODO
+        # TO DO
         pass
 
     def max_degree(self):
@@ -74,15 +77,21 @@ class Graph:
         return subj
 
     def is_connected(self):
-        # TODO
+        # TO DO
         pass
 
     """ def BFS(self, id):
-        for neighbor in self.vertex_set[id]
+        print('executando BFS:\n')
+        queue = [id]
+        visited = [id]
+        while(queue):
+            s = queue.pop(0)
+            print(" " + str(s) + " ->")
 
-            
-        # TODO
-        pass """
+        for neighbor in self.vertex_set[id]:
+            if neighbor not in visited:
+                queue.append(neighbor)
+                visited.append(neighbor) """
 
     def __str__(self):
         graphDescription = '\n' + f'Grafo, grau máximo {self.max_degree()} '
