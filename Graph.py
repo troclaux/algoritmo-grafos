@@ -29,16 +29,14 @@ class Graph:
 
     def del_vertex(self, label):
         self.vertex_set.pop(label)
+        for v in self.vertex_set:
+            if label in self.vertex_set[v]:
+                self.vertex_set[v].remove(label)
         
-    """ def compact(self):
-        set = self.vertex_set
-        for i in range(0, len(set) + 1):
-            save = i
-            while set.get(i) is None:
-                if i <= len(set):
-                    i += 1
-            set.get(i)
- """
+    def compact(self):
+        # TODO
+        pass
+
     def max_degree(self):
         max_deg = 0
 
@@ -72,7 +70,6 @@ class Graph:
 
                 #v_subj.add_neighbor(u_subj)
                 #u_subj.add_neighbor(v_subj)
-                #consertar bugs em caso de repeticao de valores no dicionario
 
         return subj
 
@@ -81,7 +78,8 @@ class Graph:
         pass
 
     """ def BFS(self, id):
-        for vertex in self.vertex_set
+        for neighbor in self.vertex_set[id]
+
             
         # TODO
         pass """
