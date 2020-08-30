@@ -80,18 +80,18 @@ class Graph:
         # TO DO
         pass
 
-    """ def BFS(self, id):
-        print('executando BFS:\n')
+    def BFS(self, id):
+        #print('executando BFS:\n')
         queue = [id]
         visited = [id]
         while(queue):
-            s = queue.pop(0)
-            print(" " + str(s) + " ->")
-
-        for neighbor in self.vertex_set[id]:
-            if neighbor not in visited:
-                queue.append(neighbor)
-                visited.append(neighbor) """
+            id = queue.pop(0)
+            for neighbor in self.vertex_set[id]:
+                if neighbor not in visited:
+                    print(' ' + str(id) + ' -> ' + str(neighbor))
+                    queue.append(neighbor)
+                    visited.append(neighbor)
+                    
 
     def __str__(self):
         graphDescription = '\n' + f'Grafo, grau máximo {self.max_degree()} '
