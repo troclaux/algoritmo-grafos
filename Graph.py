@@ -1,5 +1,3 @@
-from Vertex import Vertex
-
 class Graph:
     def __init__(self):
         self.vertex_set = dict()
@@ -42,6 +40,9 @@ class Graph:
             max_deg = max(max_deg, len(self.vertex_set[v]))
 
         return max_deg
+
+    def degree(self, label):
+        return len(self.vertex_set[label])
 
     def is_undirected(self):
         for v in self.vertex_set.keys():
