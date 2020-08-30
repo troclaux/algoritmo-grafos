@@ -44,9 +44,9 @@ class Graph:
         return max_deg
 
     def is_undirected(self):
-        for v in self.vertex_set.values():
-            for u in v.neighbors.values():
-                if v not in u.neighbors.values():
+        for v in self.vertex_set.keys():
+            for u in self.vertex_set[v]:
+                if v not in self.vertex_set[u]:
                     return False
         return True
 
