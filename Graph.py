@@ -86,7 +86,8 @@ class Graph:
         else:
             graphDescription += 'Direcionado\n'
 
-        for v in self.vertex_set.values():
-            graphDescription += v.__str__()
+        
+        for v in self.vertex_set.keys():
+            graphDescription += 'Vértice: ' + str(v) + ', vizinhança:' + str(self.vertex_set[v]) + '\n'
 
         return graphDescription
