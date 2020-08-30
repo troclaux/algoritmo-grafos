@@ -17,15 +17,14 @@ class Graph:
             print('Erro: um dos vértices não existe no grafo')
 
     def add_edge(self, label1, label2):
-        v1 = self.vertex_set[label1]
-        v2 = self.vertex_set[label2]
-
-        v1.add_neighbor(v2)
-        v2.add_neighbor(v1)
+        if label1 in self.vertex_set and label2 in self.vertex_set:
+            self.vertex_set[label1].append(label2)
+            self.vertex_set[label2].append(label1)
+        else:
+            print('Erro: um dos vértices não existe no grafo')
 
     def del_vertex(self, label):
-        v = self.vertex_set[label]
-        v.pop(label)
+        self.vertex_set.pop(label)
         
     """ def compact(self):
         set = self.vertex_set
