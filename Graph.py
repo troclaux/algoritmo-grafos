@@ -6,8 +6,7 @@ class Graph:
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
-            v = Vertex(label)
-            self.vertex_set[label] = v
+            self.vertex_set[label] = []
         else:
             return f'{label} already exists in this graph.'
 
