@@ -57,12 +57,15 @@ class Graph:
             subj.add_vertex(v)
 
         for v in self.vertex_set.values():
-            for u in v.neighbors.values():
-                v_subj = subj.vertex_set[v.label]
-                u_subj = subj.vertex_set[u.label]
+            for u in self.vertex_set[v]:
 
-                v_subj.add_neighbor(u_subj)
-                u_subj.add_neighbor(v_subj)
+                subj.vertex_set[u].append(v)
+                #v_subj = subj.vertex_set[v.label]
+                #u_subj = subj.vertex_set[u.label]
+
+                #v_subj.add_neighbor(u_subj)
+                #u_subj.add_neighbor(v_subj)
+                #consertar bugs em caso de repeticao de valores no dicionario
 
         return subj
 
