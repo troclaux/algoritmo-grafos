@@ -9,10 +9,12 @@ class Graph:
             return f'{label} already exists in this graph.'
 
     def add_arc(self, label1, label2):
-        if label1 in self.vertex_set and label2 in self.vertex_set:
-            self.vertex_set[label1].append(label2)
-        else:
+        if label1 not in self.vertex_set or label2 not in self.vertex_set:
             print('Erro: um dos vértices não existe no grafo')
+        elif  label2 in self.vertex_set[label1]:
+            print('Arco ' + str(label1) + ' -> ' + str(label2) + ' já existe')
+        else:
+            self.vertex_set[label1].append(label2)
 
     def add_edge(self, label1, label2):
         if label1 in self.vertex_set and label2 in self.vertex_set:
