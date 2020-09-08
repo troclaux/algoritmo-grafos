@@ -36,9 +36,24 @@ class Graph:
             if label in self.vertex_set[v]:
                 self.vertex_set[v].remove(label)
         
-    def compact(self):
-        # TO DO
-        pass
+   """  def compact(self):
+        for i in self.vertex_set.keys():
+            save = i
+
+            while i not in self.vertex_set.keys():
+                i += 1
+            print('expressao: ' + str(len(self.vertex_set) - i))
+            
+            for j in range(len(self.vertex_set) - i):
+                newId = save + j
+                oldId = i + j
+                print('j: ', j)
+                print('newId: ' + str(newId))
+                print('oldId: ' + str(oldId))
+                self.vertex_set[newId] = self.vertex_set.pop(oldId)
+            i = save
+        return self """
+
 
     def max_degree(self):
         max_deg = 0
