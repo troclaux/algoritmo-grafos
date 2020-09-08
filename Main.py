@@ -22,9 +22,6 @@ graph.add_arc(4,6)
 graph.add_arc(7,5)
 graph.add_arc(3,4)
 
-graph.del_vertex(5)
-graph.del_vertex(4)
-
 graph.DFS(1)
 
 print(str(graph))

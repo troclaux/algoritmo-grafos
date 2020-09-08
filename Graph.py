@@ -1,6 +1,10 @@
 class Graph:
     def __init__(self):
         self.vertex_set = dict()
+        self.time = 0
+        self.discovery_time = []
+        self.finishing_time = []
+        self.parents = []
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
@@ -76,21 +80,25 @@ class Graph:
 
         return subj
 
-    """ def DFS(self, id):
-        stack = [id]
-        time = 0
-        discovery_time = []
-        finishing_time = []
-        parents = []
+    def DFS(self, id):
         for vertex in self.vertex_set:
-            discovery_time.append(-1)
-            finishing_time.append(-1)
-            parents.append(None)
+            self.discovery_time.append(-1)
+            self.finishing_time.append(-1)
         for adjacent_vertex in self.vertex_set[id]:
-            if discovery_time[adjacent_vertex] == -1:
-                time += 1
-                discovery_time[adjacent_vertex] = time
-                for verte """
+            if self.discovery_time[adjacent_vertex] == -1:
+                self.DFS_visit(adjacent_vertex)
+        self.time = 0
+
+    def DFS_visit(self, id):
+        self.time = self.time + 1
+        self.discovery_time.insert(id, self.time)
+        for vertex in self.vertex_set[id]:
+            if self.discovery_time[vertex] == -1:
+                self.parents.insert(vertex, id)
+                self.DFS_visit(vertex)
+        self.time += 1
+        self.finishing_time.insert(id, self.time)
+
 
 
     def BFS(self, id):
