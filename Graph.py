@@ -36,23 +36,8 @@ class Graph:
             if label in self.vertex_set[v]:
                 self.vertex_set[v].remove(label)
         
-   """  def compact(self):
-        for i in self.vertex_set.keys():
-            save = i
-
-            while i not in self.vertex_set.keys():
-                i += 1
-            print('expressao: ' + str(len(self.vertex_set) - i))
-            
-            for j in range(len(self.vertex_set) - i):
-                newId = save + j
-                oldId = i + j
-                print('j: ', j)
-                print('newId: ' + str(newId))
-                print('oldId: ' + str(oldId))
-                self.vertex_set[newId] = self.vertex_set.pop(oldId)
-            i = save
-        return self """
+    #def compact(self):
+        
 
 
     def max_degree(self):
@@ -90,6 +75,23 @@ class Graph:
                 #u_subj.add_neighbor(v_subj)
 
         return subj
+
+    """ def DFS(self, id):
+        stack = [id]
+        time = 0
+        discovery_time = []
+        finishing_time = []
+        parents = []
+        for vertex in self.vertex_set:
+            discovery_time.append(-1)
+            finishing_time.append(-1)
+            parents.append(None)
+        for adjacent_vertex in self.vertex_set[id]:
+            if discovery_time[adjacent_vertex] == -1:
+                time += 1
+                discovery_time[adjacent_vertex] = time
+                for verte """
+
 
     def BFS(self, id):
         #print('executando BFS:\n')

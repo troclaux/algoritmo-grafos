@@ -25,7 +25,7 @@ graph.add_arc(3,4)
 graph.del_vertex(5)
 graph.del_vertex(4)
 
-
+graph.DFS(1)
 
 print(str(graph))
 print(graph.is_connected())
