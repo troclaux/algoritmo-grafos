@@ -12,11 +12,11 @@ class Graph:
         else:
             return f'{label} already exists in this graph.'
 
-    def add_arc(self, label1, label2):
+    def add_arrow(self, label1, label2):
         if label1 not in self.vertex_set or label2 not in self.vertex_set:
             print('Erro: um dos vértices não existe no grafo')
         elif  label2 in self.vertex_set[label1]:
-            print('Arco ' + str(label1) + ' -> ' + str(label2) + ' já existe')
+            print('Seta ' + str(label1) + ' -> ' + str(label2) + ' já existe')
         else:
             self.vertex_set[label1].append(label2)
             self.vertex_set[label1].sort()
@@ -81,19 +81,21 @@ class Graph:
         return subj
 
     def DFS(self, id):
+        print('DFS :\n')
         for vertex in self.vertex_set:
-            self.discovery_time.append(-1)
-            self.finishing_time.append(-1)
-        for adjacent_vertex in self.vertex_set[id]:
-            if self.discovery_time[adjacent_vertex] == -1:
-                self.DFS_visit(adjacent_vertex)
-        self.time = 0
+            self.discovery_time.insert(vertex, -1)
+            self.finishing_time.insert(vertex, -1)
+        self.discovery_time[1] = 1
+        for vertex in self.vertex_set:
+            if self.discovery_time[vertex] == -1:
+                self.DFS_visit(vertex)
 
     def DFS_visit(self, id):
         self.time = self.time + 1
         self.discovery_time.insert(id, self.time)
         for vertex in self.vertex_set[id]:
             if self.discovery_time[vertex] == -1:
+                print(str(id) + ' -> ' + str(vertex))
                 self.parents.insert(vertex, id)
                 self.DFS_visit(vertex)
         self.time += 1
