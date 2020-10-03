@@ -6,6 +6,8 @@ class Graph:
         self.finishing_time = []
         self.parents = []
         self.visited = set()
+        self.not_in_hole = []
+        self.in_path = []
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
@@ -108,6 +110,37 @@ class Graph:
             self.visited.add(id)
             for neighbor in self.vertex_set[id]:
                 self.DFSS(neighbor)
+
+    def is_even_hole_free(self):
+        
+        # compute adjacency matrix A[] of G
+        for u in self.vertex_set:
+            self.in_path.insert(u, 1)
+            for v in self.vertex_set:
+                for w in self.vertex_set[v]:
+                    if u in self.vertex_set[v] and u not in self.vertex_set[w]:
+                        # if self.not_in_hole[(u,v), w]:
+                            self.in_path[v] = 1
+                            self.process(u,v,w)
+                            self.in_path[v] = 0
+            self.in_path[u] = 0
+        print('graph does not contain a hole')
+
+    def process(self, a, b, c):
+        self.in_path[c] = 1
+        for d in self.vertex_set[c]:
+            if d not in self.vertex_set[a] or d not in self.vertex_set[b]:
+                # then abcd is P4 of G
+                # identação do if abaixo esta correto?
+                if self.in_path[d] == 1:
+                    print('Graph has a hole')
+                    return False
+                #elif self.not_in_hole[(b,c),d] is 0:
+                    #self.process(b,c,d)
+        self.in_path[c] = 0
+        #self.not_in_hole[(a,b),c] = 1
+        #self.not_in_hole[(c,b),a] = 1    
+
 
 
     def BFS(self, id):
