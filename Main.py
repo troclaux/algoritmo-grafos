@@ -22,7 +22,7 @@ graph.add_arrow(6,5)
 graph.add_arrow(7,5)
 graph.add_arrow(3,4)
 
-graph.DFS(1)
+graph.DFSS(1)
 
 print(str(graph))
 print(graph.is_connected())

@@ -5,6 +5,7 @@ class Graph:
         self.discovery_time = []
         self.finishing_time = []
         self.parents = []
+        self.visited = set()
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
@@ -101,6 +102,12 @@ class Graph:
         self.time += 1
         self.finishing_time.insert(id, self.time)
 
+    def DFSS(self, id):
+        if id not in self.visited:
+            print(str(id))
+            self.visited.add(id)
+            for neighbor in self.vertex_set[id]:
+                self.DFSS(neighbor)
 
 
     def BFS(self, id):
