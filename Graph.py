@@ -111,14 +111,11 @@ class Graph:
             for neighbor in self.vertex_set[id]:
                 self.DFSS(neighbor)
 
-    def is_even_hole_free(self):
+    def is_hole_free(self):
         
-        size = len(self.vertex_set)
+        size = 1 + len(self.vertex_set)
         self.not_in_hole =  [[[0] * size] *size] *size
-
-        for vertex in self.vertex_set:
-            self.in_path[vertex] = 0
-
+        self.in_path = [0] * size
         
         for u in self.vertex_set:
             self.in_path[u] = 1
