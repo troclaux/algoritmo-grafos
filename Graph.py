@@ -112,14 +112,17 @@ class Graph:
                 self.DFSS(neighbor)
 
     def is_even_hole_free(self):
+            self.not_in_hole =  [[[[0] * vertex] *vertex] *vertex]
+        for vertex in self.vertex_set:
+            self.in_path[vertex] = 0
+
         
-        # compute adjacency matrix A[] of G
         for u in self.vertex_set:
             self.in_path.insert(u, 1)
             for v in self.vertex_set:
                 for w in self.vertex_set[v]:
                     if u in self.vertex_set[v] and u not in self.vertex_set[w]:
-                        # if self.not_in_hole[(u,v), w]:
+                        if self.not_in_hole[u][v][w]:
                             self.in_path[v] = 1
                             self.process(u,v,w)
                             self.in_path[v] = 0
@@ -135,11 +138,11 @@ class Graph:
                 if self.in_path[d] == 1:
                     print('Graph has a hole')
                     return False
-                #elif self.not_in_hole[(b,c),d] is 0:
+                #elif self.not_in_hole[b][c][d] is 0:
                     #self.process(b,c,d)
         self.in_path[c] = 0
-        #self.not_in_hole[(a,b),c] = 1
-        #self.not_in_hole[(c,b),a] = 1    
+        #self.not_in_hole[a][b][c] = 1
+        #self.not_in_hole[c][b][a] = 1    
 
 
 
