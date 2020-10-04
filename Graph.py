@@ -113,8 +113,9 @@ class Graph:
 
     def is_even_hole_free(self):
         
-        self.not_in_hole =  [[[0] * vertex] *vertex] *vertex
-        
+        size = len(self.vertex_set)
+        self.not_in_hole =  [[[0] * size] *size] *size
+
         for vertex in self.vertex_set:
             self.in_path[vertex] = 0
 
