@@ -128,6 +128,9 @@ class Graph:
                             self.in_path[int(v)] = 0
             self.in_path[int(u)] = 0
         print('graph does not contain a hole')
+        #if len(cycle.vertex_set) % 2 == 1 and len(cycle.vertex_set<6):
+            #print('graph is even-hole-free')
+            #return True
 
     def process(self, a, b, c):
         self.in_path[int(c)] = 1
