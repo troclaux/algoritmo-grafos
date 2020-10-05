@@ -42,9 +42,9 @@ class Graph:
         for v in self.vertex_set:
             if label in self.vertex_set[v]:
                 self.vertex_set[v].remove(label)
-        
+
     #def compact(self):
-        
+
 
 
     def max_degree(self):
@@ -112,11 +112,10 @@ class Graph:
                 self.DFSS(neighbor)
 
     def is_hole_free(self):
-        
         size = 1 + len(self.vertex_set)
         self.not_in_hole =  [[[0] * size] *size] *size
         self.in_path = [0] * size
-        
+
         for u in self.vertex_set:
             self.in_path[u] = 1
             for v in self.vertex_set:
@@ -124,7 +123,8 @@ class Graph:
                     if u in self.vertex_set[v] and u not in self.vertex_set[w]:
                         if self.not_in_hole[u][v][w] == 0:
                             self.in_path[v] = 1
-                            self.process(u,v,w)
+                            if not self.process(u,v,w):
+                                return False
                             self.in_path[v] = 0
             self.in_path[u] = 0
         print('graph does not contain a hole')
@@ -141,7 +141,9 @@ class Graph:
                     self.process(b,c,d)
         self.in_path[c] = 0
         self.not_in_hole[a][b][c] = 1
-        self.not_in_hole[c][b][a] = 1    
+        self.not_in_hole[c][b][a] = 1
+
+        return True
 
 
 
@@ -156,7 +158,7 @@ class Graph:
                     print(' ' + str(id) + ' -> ' + str(neighbor))
                     queue.append(neighbor)
                     visited.append(neighbor)
-                    
+
     def is_connected(self):
         for id in self.vertex_set:
             queue = [id]
@@ -178,7 +180,7 @@ class Graph:
         else:
             graphDescription += 'Direcionado\n'
 
-        
+
         for v in self.vertex_set.keys():
             graphDescription += 'Vértice: ' + str(v) + ', vizinhança:' + str(self.vertex_set[v]) + '\n'
 
