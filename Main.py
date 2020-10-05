@@ -1,29 +1,21 @@
 from Graph import Graph
 
 graph = Graph()
+neighbors = []
 
-graph.add_vertex(1)
-graph.add_vertex(2)
-graph.add_vertex(3)
-graph.add_vertex(4)
-graph.add_vertex(5)
-graph.add_vertex(6)
-graph.add_vertex(7)
+file = open('entrada.txt')
 
-graph.add_edge(1,2)
-graph.add_edge(2,3)
-graph.add_edge(3,4)
-graph.add_edge(1,4)
+for line in file:
+  line_without_enter = line.rstrip()
+  separated_line = line_without_enter.split('=')
+  graph.add_vertex(separated_line[0])
+  neighbors.append(separated_line[1])
 
-""" graph.add_arrow(2,5)
-graph.add_arrow(4,6)
-graph.add_arrow(4,7)
-graph.add_arrow(6,5)
-graph.add_arrow(7,5)
-graph.add_arrow(3,4) """
-
+for vertex in graph.vertex_set:
+  list_of_neighbors = neighbors[int(vertex)-1].split()
+  for i in list_of_neighbors:
+    graph.add_arrow(vertex, i)
+  
 #graph.DFSS(1)
-graph.is_hole_free()
-
-print(str(graph))
-print(graph.is_connected())
+print(graph)
+#graph.is_hole_free()
