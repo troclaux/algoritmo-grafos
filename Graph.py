@@ -174,11 +174,11 @@ class Graph:
         return True
 
     def __str__(self):
-        graphDescription = '\n' + f'Grafo, grau máximo {self.max_degree()} '
+        graphDescription = '\n' + f'Grafo de grau máximo {self.max_degree()} '
         if self.is_undirected():
-            graphDescription += 'Não direcionado\n'
+            graphDescription += 'não direcionado\n\n'
         else:
-            graphDescription += 'Direcionado\n'
+            graphDescription += 'direcionado\n\n'
 
 
         for v in self.vertex_set.keys():
