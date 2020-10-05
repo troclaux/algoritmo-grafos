@@ -111,37 +111,37 @@ class Graph:
             for neighbor in self.vertex_set[id]:
                 self.DFSS(neighbor)
 
-    def is_hole_free(self):
+    def is_even_hole_free(self):
         size = 1 + len(self.vertex_set)
         self.not_in_hole =  [[[0] * size] *size] *size
         self.in_path = [0] * size
 
         for u in self.vertex_set:
-            self.in_path[u] = 1
+            self.in_path[int(u)] = 1
             for v in self.vertex_set:
                 for w in self.vertex_set[v]:
                     if u in self.vertex_set[v] and u not in self.vertex_set[w]:
-                        if self.not_in_hole[u][v][w] == 0:
-                            self.in_path[v] = 1
+                        if self.not_in_hole[int(u)][int(v)][int(w)] == 0:
+                            self.in_path[int(v)] = 1
                             if not self.process(u,v,w):
                                 return False
-                            self.in_path[v] = 0
-            self.in_path[u] = 0
+                            self.in_path[int(v)] = 0
+            self.in_path[int(u)] = 0
         print('graph does not contain a hole')
 
     def process(self, a, b, c):
-        self.in_path[c] = 1
+        self.in_path[int(c)] = 1
         for d in self.vertex_set[c]:
             if d not in self.vertex_set[a] and d not in self.vertex_set[b]:
                 # then abcd is P4 of G
-                if self.in_path[d] == 1:
+                if self.in_path[int(d)] == 1:
                     print('Graph has a hole')
                     return False
-                elif self.not_in_hole[b][c][d] == 0:
+                elif self.not_in_hole[int(b)][int(c)][int(d)] == 0:
                     self.process(b,c,d)
-        self.in_path[c] = 0
-        self.not_in_hole[a][b][c] = 1
-        self.not_in_hole[c][b][a] = 1
+        self.in_path[int(c)] = 0
+        self.not_in_hole[int(a)][int(b)][int(c)] = 1
+        self.not_in_hole[int(c)][int(b)][int(a)] = 1
 
         return True
 

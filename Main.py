@@ -18,4 +18,4 @@ for vertex in graph.vertex_set:
   
 #graph.DFSS(1)
 print(graph)
-#graph.is_hole_free()
+graph.is_even_hole_free()
