@@ -8,6 +8,8 @@ class Graph:
         self.visited = set()
         self.not_in_hole = []
         self.in_path = []
+        self.weights = []
+        self.capacities = []
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
@@ -45,7 +47,30 @@ class Graph:
 
     #def compact(self):
 
+    def BFS_ford(self, s, t, path):
+        queue = [s]
+        visited = [s]
+        while(queue):
+            s = queue.pop(0)
+            for neighbor in self.vertex_set[s]:
+                if neighbor not in visited:
+                    print(' ' + str(s) + ' -> ' + str(neighbor))
+                    queue.append(neighbor)
+                    visited.append(neighbor)
+        if visited[t]:
+            return True
+        else:
+            return False
 
+    def ford_fulkerson(self, source, sink):
+        #gerar rede residual
+        max_flow = 0
+        path_flow = 
+        
+        while(self.BFS()):
+            while(sink is not source):
+                path_flow = min(path_flow, self.graph)
+        
 
     def max_degree(self):
         max_deg = 0
