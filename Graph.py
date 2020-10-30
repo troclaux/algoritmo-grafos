@@ -58,7 +58,8 @@ class Graph:
                     print(' ' + str(s) + ' -> ' + str(neighbor))
                     queue.append(neighbor)
                     visited.append(neighbor)
-        if visited[t]:
+                    path[neighbor] = s
+        if t not in visited:
             return True
         else:
             return False
@@ -66,7 +67,7 @@ class Graph:
     def ford_fulkerson(self, source, sink):
         #gerar rede residual
         max_flow = 0
-        path_flow = 
+        path_flow = min(path_flow, self.)
         
         while(self.BFS()):
             while(sink is not source):
