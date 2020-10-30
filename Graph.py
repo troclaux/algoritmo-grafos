@@ -73,11 +73,12 @@ class Graph:
             while(sink is not source):
                 path_flow = min(path_flow, self.graph)
 
-    #def generate_residual_graph(self):
+    def generate_residual_graph(self):
         residual_graph = self
         for parent in residual_graph.vertex_set:
             for child in residual_graph.vertex_set[parent]:
                 residual_graph.capacities[parent][child] = self.capacities[parent][child] - self.flows[parent][child]
+        return residual_graph
 
 
     def add_capacity(self, parent, child, capacity):
