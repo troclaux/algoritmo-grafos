@@ -68,12 +68,17 @@ class Graph:
         #gerar rede residual
         max_flow = 0
         path_flow = min(path_flow, self.)
-        
-        while(self.BFS()):
+        #nao sei como determinar path
+        while(self.BFS(source, sink, path)):
             while(sink is not source):
                 path_flow = min(path_flow, self.graph)
 
     #def generate_residual_graph(self):
+        residual_graph = self
+        for parent in residual_graph.vertex_set:
+            for child in residual_graph.vertex_set[parent]:
+                residual_graph.capacities[parent][child] = self.capacities[parent][child] - self.flows[parent][child]
+
 
     def add_capacity(self, parent, child, capacity):
         self.capacities[parent][child] = capacity
