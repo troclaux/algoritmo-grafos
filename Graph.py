@@ -8,8 +8,9 @@ class Graph:
         self.visited = set()
         self.not_in_hole = []
         self.in_path = []
-        self.weights = []
+
         self.capacities = []
+        self.flows = []
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
@@ -70,7 +71,14 @@ class Graph:
         while(self.BFS()):
             while(sink is not source):
                 path_flow = min(path_flow, self.graph)
-        
+
+    #def generate_residual_graph(self):
+
+    def add_capacity(self, parent, child, capacity):
+        self.capacities[parent][child] = capacity
+
+    def add_flow(self, parent, child, flow):
+        self.flows[parent][child] = flow
 
     def max_degree(self):
         max_deg = 0
