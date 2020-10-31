@@ -52,15 +52,20 @@ class Graph:
         residual_graph = self.generate_residual_graph()
         max_flow = 0
         path_flow = 999
+        augmenting_path = []
         #nao sei como determinar augmenting_path
-        while( self.BFS_ford(source, sink, self.augmenting_path) ):
+        #enquanto tiver caminho aumentante
+        while( self.BFS_ford(source, sink, augmenting_path) ):
             while(sink is not source):
                 path_flow = min(path_flow, self.graph)
-        max_flow = max_flow + path_flow
+            max_flow = max_flow + path_flow
         #porque declarar v?
         v = sink
         while(v is not source):
             u = augmenting_path[v]
+            self.capacities[u][v] -= path_flow
+            self.capacities[v][u] += path_flow
+            v = augmenting_path[v]
             
         return max_flow
 
@@ -78,6 +83,7 @@ class Graph:
         if t not in visited:
             return True
         else:
+            print('busca em largura concluida')
             return False
 
     def generate_residual_graph(self):
@@ -88,13 +94,13 @@ class Graph:
         return residual_graph
 
 
-    def add_capacity(self, parent, child, capacity):
+    def set_capacity(self, parent, child, capacity):
         if child in self.vertex_set[parent]:
             self.capacities[parent][child] = capacity
         else:
             print('vertice ' + child + ' nao é vizinho de ' + parent)
 
-    def add_flow(self, parent, child, flow):
+    def set_flow(self, parent, child, flow):
         if child in self.vertex_set[parent]:
             self.flows[parent][child] = flow
         else:
