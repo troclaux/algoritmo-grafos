@@ -48,7 +48,23 @@ class Graph:
 
     #def compact(self):
 
-    def BFS_ford(self, s, t, path):
+    def ford_fulkerson(self, source, sink):
+        residual_graph = self.generate_residual_graph()
+        max_flow = 0
+        path_flow = 999
+        #nao sei como determinar augmenting_path
+        while( self.BFS_ford(source, sink, self.augmenting_path) ):
+            while(sink is not source):
+                path_flow = min(path_flow, self.graph)
+        max_flow = max_flow + path_flow
+        #porque declarar v?
+        v = sink
+        while(v is not source):
+            u = augmenting_path[v]
+            
+        return max_flow
+
+    def BFS_ford(self, s, t, augmenting_path):
         queue = [s]
         visited = [s]
         while(queue):
@@ -58,21 +74,11 @@ class Graph:
                     print(' ' + str(s) + ' -> ' + str(neighbor))
                     queue.append(neighbor)
                     visited.append(neighbor)
-                    path[neighbor] = s
+                    augmenting_path[neighbor] = s
         if t not in visited:
             return True
         else:
             return False
-
-    def ford_fulkerson(self, source, sink):
-        residual_graph = self.generate_residual_graph()
-
-        max_flow = 0
-        path_flow = 999
-        #nao sei como determinar path
-        while( self.BFS(source, sink, self.path) ):
-            while(sink is not source):
-                path_flow = min(path_flow, self.graph)
 
     def generate_residual_graph(self):
         residual_graph = self
