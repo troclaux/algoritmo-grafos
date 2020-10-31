@@ -1,5 +1,5 @@
 class Graph:
-    def __init__(self):
+    def __init__(self, vertex_set_size):
         self.vertex_set = dict()
         self.time = 0
         self.discovery_time = []
@@ -9,8 +9,8 @@ class Graph:
         self.not_in_hole = []
         self.in_path = []
 
-        self.capacities = []
-        self.flows = []
+        self.capacities = [[0 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
+        self.flows = [[0 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
