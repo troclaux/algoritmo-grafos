@@ -65,11 +65,12 @@ class Graph:
             return False
 
     def ford_fulkerson(self, source, sink):
-        #gerar rede residual
+        residual_graph = self.generate_residual_graph()
+
         max_flow = 0
-        path_flow = min(path_flow, self.)
+        path_flow = 999
         #nao sei como determinar path
-        while(self.BFS(source, sink, path)):
+        while( self.BFS(source, sink, self.path) ):
             while(sink is not source):
                 path_flow = min(path_flow, self.graph)
 
@@ -82,10 +83,16 @@ class Graph:
 
 
     def add_capacity(self, parent, child, capacity):
-        self.capacities[parent][child] = capacity
+        if child in self.vertex_set[parent]:
+            self.capacities[parent][child] = capacity
+        else:
+            print('vertice ' + child + ' nao é vizinho de ' + parent)
 
     def add_flow(self, parent, child, flow):
-        self.flows[parent][child] = flow
+        if child in self.vertex_set[parent]:
+            self.flows[parent][child] = flow
+        else:
+            print('vertice ' + child + ' nao é vizinho de ' + parent)
 
     def max_degree(self):
         max_deg = 0
