@@ -244,6 +244,10 @@ class Graph:
 
 
         for v in self.vertex_set.keys():
-            graphDescription += 'Vértice: ' + str(v) + ', vizinhança:' + str(self.vertex_set[v]) + ', capacidades: ' + str(self.capacities[int(v)]) + '\n'
+            list_of_capacities = []
+            for i in self.capacities[int(v)]:
+                if i != 0:
+                    list_of_capacities.append(i)
+            graphDescription += 'Vértice: ' + str(v) + ', vizinhança:' + str(self.vertex_set[v]) + ', capacidades: ' + str(list_of_capacities) + '\n'
 
         return graphDescription
