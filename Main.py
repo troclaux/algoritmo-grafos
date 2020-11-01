@@ -1,11 +1,18 @@
 from Graph import Graph
 
+file = open('entrada.txt')
 neighbors = []
+number_of_lines = 0
 j=0
 number_of_vertices = 0
-file = open('entrada.txt')
 
-graph = Graph(10)
+
+for line in file:
+  number_of_lines = number_of_lines + 1
+
+#vai para o comeco do arquivo
+file.seek(0)
+graph = Graph(number_of_lines + 1)
 
 for line in file:
   number_of_vertices = number_of_vertices + 1
@@ -21,12 +28,14 @@ for vertex in graph.vertex_set:
     print("i: " + str(i) + " value:" + str(value))
     if((i%2) == 0):
       graph.add_arrow(vertex, value)
-      j=value
+      j=int(value)
     else:
-      graph.capacities[int(vertex)][0] = value
+      print("cheguei no else")
+      print(str(value))
+      graph.capacities[int(vertex)][j] = value
   
 
 #graph.DFSS(1)
 print(graph)
-print(graph.capacities)
+#print(graph.capacities)
 graph.is_even_hole_free()
