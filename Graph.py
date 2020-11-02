@@ -57,6 +57,7 @@ class Graph:
         #enquanto tiver caminho aumentante
         while( self.BFS_ford(source, sink, augmenting_path) ):
             while(sink is not source):
+                #adicionar funcao que extrai menor capacidade de um caminho
                 path_flow = min(path_flow, self.graph)
             max_flow = max_flow + path_flow
             #porque declarar v?
@@ -125,7 +126,7 @@ class Graph:
         return True
 
     def subjacent(self):
-        subj = Graph()
+        subj = Graph(len(self.vertex_set))
 
         for v in self.vertex_set.keys():
             subj.add_vertex(v)
