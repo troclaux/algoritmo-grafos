@@ -10,7 +10,7 @@ class Graph:
         self.in_path = []
 
         self.capacities = [[-1 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
-        self.flows = [[-1 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
+        self.flows = [[0 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
@@ -103,7 +103,7 @@ class Graph:
         residual_graph = self
         for parent in residual_graph.vertex_set:
             for child in residual_graph.vertex_set[parent]:
-                residual_graph.capacities[parent][child] = self.capacities[parent][child] - self.flows[parent][child]
+                residual_graph.capacities[parent][child] = self.capacities[parent][child]
         return residual_graph
 
 
