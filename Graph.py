@@ -80,7 +80,7 @@ class Graph:
                     queue.append(neighbor)
                     visited.append(neighbor)
                     augmenting_path[neighbor] = u
-        if t not in visited:
+        if t in visited:
             return True
         else:
             print('busca em largura concluida')
