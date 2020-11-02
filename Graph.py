@@ -56,28 +56,28 @@ class Graph:
                 minimum_capacity = i
         return minimum_capacity
 
-
     def ford_fulkerson(self, source, sink):
-        #residual_graph = self.generate_residual_graph()
+        residual_graph = self.generate_residual_graph()
         max_flow = 0
         path_flow = 999
-        augmenting_path = [-1]*len(self.vertex_set)
+        augmenting_path = [-1]*len(residual_graph.vertex_set)
         #nao sei como determinar augmenting_path
         #enquanto tiver caminho aumentante
-        while( self.BFS_ford(source, sink, augmenting_path) ):
+        while( residual_graph.BFS_ford(source, sink, augmenting_path) ):
             s = sink
+            #encontra a aresta com capacidade residual nao-nula e minima no caminho aumentante
             while(s != source):
                 #adicionar funcao que extrai menor capacidade de um caminho
-                path_flow = min(path_flow, self.capacities[augmenting_path[s]][s])
+                path_flow = min(path_flow, residual_graph.capacities[augmenting_path[s]][s])
                 s = augmenting_path[s]
-
             max_flow = max_flow + path_flow
             #porque declarar v? para nao alterar sink
             v = sink
+            #atualiza as capacidades do grafo residual
             while(v != source):
                 u = augmenting_path[v]
-                self.capacities[u][v] -= path_flow
-                self.capacities[v][u] += path_flow
+                residual_graph.capacities[u][v] -= path_flow
+                residual_graph.capacities[v][u] += path_flow
                 v = augmenting_path[v]
             
         return max_flow

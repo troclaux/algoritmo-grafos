@@ -35,3 +35,4 @@ for vertex in graph.vertex_set:
   
 print(graph)
 print('numero de vertices no grafo: ', len(graph.vertex_set))
+print('o fluxo maximo desse grafo eh: ', str(graph.ford_fulkerson(1, 7)))
