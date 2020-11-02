@@ -9,8 +9,8 @@ class Graph:
         self.not_in_hole = []
         self.in_path = []
 
-        self.capacities = [[0 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
-        self.flows = [[0 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
+        self.capacities = [[-1 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
+        self.flows = [[-1 for x in range(vertex_set_size)] for y in range(vertex_set_size)]
 
     def add_vertex(self, label):
         if label not in self.vertex_set.keys():
@@ -48,6 +48,15 @@ class Graph:
 
     #def compact(self):
 
+    #checar se a declaracao do infinito funciona corretamente com essa funcao
+    def extract_minimum_capacity_path(self, path):
+        minimum_capacity = float('inf')
+        for i in path:
+            if self.capacities[i] > 0 and self.capacities[i] < minimum_capacity:
+                minimum_capacity = i
+        return minimum_capacity
+
+
     def ford_fulkerson(self, source, sink):
         residual_graph = self.generate_residual_graph()
         max_flow = 0
@@ -56,9 +65,12 @@ class Graph:
         #nao sei como determinar augmenting_path
         #enquanto tiver caminho aumentante
         while( self.BFS_ford(source, sink, augmenting_path) ):
-            while(sink is not source):
+            s = sink
+            while(s != source):
                 #adicionar funcao que extrai menor capacidade de um caminho
                 path_flow = min(path_flow, self.graph)
+                s = augmenting_path[s]
+
             max_flow = max_flow + path_flow
             #porque declarar v?
             v = sink
