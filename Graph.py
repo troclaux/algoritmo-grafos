@@ -49,9 +49,13 @@ class Graph:
     #def compact(self):
 
     def ford_fulkerson(self, source, sink):
+        if source not in self.vertex_set:
+            print('vertice de origem inserido nao foi localizado no grafo')
+        if sink not in self.vertex_set:
+            print('vertice de destino inserido nao foi localizado no grafo')
         residual_graph = self.generate_residual_graph()
         max_flow = 0
-        path_flow = 999
+        path_flow = float('inf')
         augmenting_path = [-1]*(len(residual_graph.vertex_set) + 1)
         #enquanto tiver caminho aumentante, aumentar o fluxo no grafo residual
         while( residual_graph.BFS_ford(source, sink, augmenting_path) ):
@@ -86,7 +90,7 @@ class Graph:
         if t in visited:
             return True
         else:
-            print('busca em largura concluida')
+            print('busca em largura concluida \n')
             return False
 
     #funcao que retorna o grafo residual construido a partir de um grafo qualquer
