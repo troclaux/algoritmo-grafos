@@ -71,7 +71,6 @@ class Graph:
                 path_flow = min(path_flow, residual_graph.capacities[augmenting_path[s]][s])
                 s = augmenting_path[s]
 
-            print(path_flow)
             max_flow = max_flow + path_flow
             #porque declarar v? para nao alterar sink
             v = sink
