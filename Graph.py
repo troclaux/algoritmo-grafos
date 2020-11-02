@@ -73,13 +73,13 @@ class Graph:
         queue = [s]
         visited = [s]
         while(queue):
-            s = queue.pop(0)
-            for neighbor in self.vertex_set[s]:
-                if neighbor not in visited and self.capacities[s][neighbor] > 0:
-                    print(' ' + str(s) + ' -> ' + str(neighbor))
+            u = queue.pop(0)
+            for neighbor in self.vertex_set[u]:
+                if neighbor not in visited and self.capacities[u][neighbor] > 0:
+                    print(' ' + str(u) + ' -> ' + str(neighbor))
                     queue.append(neighbor)
                     visited.append(neighbor)
-                    augmenting_path[neighbor] = s
+                    augmenting_path[neighbor] = u
         if t not in visited:
             return True
         else:
