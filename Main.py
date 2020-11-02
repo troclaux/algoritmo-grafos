@@ -16,6 +16,7 @@ graph = Graph(number_of_vertices + 1)
 
 #adiciona vertices ao grafo
 #IMPORTANTE: para adicionar os vertices, a entrada precisa ter um '=' toda linha depois do vértice
+#tambem é melhor adicionar os vertices de forma crescente
 for line in file:
   line_without_enter = line.rstrip()
   separated_line = line_without_enter.split('=')

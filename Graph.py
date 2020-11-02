@@ -58,7 +58,7 @@ class Graph:
 
 
     def ford_fulkerson(self, source, sink):
-        residual_graph = self.generate_residual_graph()
+        #residual_graph = self.generate_residual_graph()
         max_flow = 0
         path_flow = 999
         augmenting_path = []
@@ -68,7 +68,7 @@ class Graph:
             s = sink
             while(s != source):
                 #adicionar funcao que extrai menor capacidade de um caminho
-                path_flow = min(path_flow, self.graph)
+                path_flow = min(path_flow, self.capacities[parent[s]][s])
                 s = augmenting_path[s]
 
             max_flow = max_flow + path_flow
