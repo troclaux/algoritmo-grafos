@@ -61,7 +61,7 @@ class Graph:
         #residual_graph = self.generate_residual_graph()
         max_flow = 0
         path_flow = 999
-        augmenting_path = []
+        augmenting_path = [-1]*len(self.vertex_set)
         #nao sei como determinar augmenting_path
         #enquanto tiver caminho aumentante
         while( self.BFS_ford(source, sink, augmenting_path) ):
@@ -72,7 +72,7 @@ class Graph:
                 s = augmenting_path[s]
 
             max_flow = max_flow + path_flow
-            #porque declarar v?
+            #porque declarar v? para nao alterar sink
             v = sink
             while(v != source):
                 u = augmenting_path[v]
@@ -259,7 +259,7 @@ class Graph:
         for v in self.vertex_set.keys():
             list_of_capacities = []
             for i in self.capacities[int(v)]:
-                if i != 0:
+                if i != -1:
                     list_of_capacities.append(i)
             graphDescription += 'Vértice: ' + str(v) + ', vizinhança:' + str(self.vertex_set[v]) + ', capacidades: ' + str(list_of_capacities) + '\n'
 

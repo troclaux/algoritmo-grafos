@@ -34,3 +34,4 @@ for vertex in graph.vertex_set:
       graph.capacities[int(vertex)][j] = value
   
 print(graph)
+print('numero de vertices no grafo: ', len(graph.vertex_set))
