@@ -20,19 +20,20 @@ graph = Graph(number_of_vertices + 1)
 for line in file:
   line_without_enter = line.rstrip()
   separated_line = line_without_enter.split('=')
-  graph.add_vertex(separated_line[0])
+  graph.add_vertex(int(separated_line[0]))
   neighbors.append(separated_line[1])
 
 #adiciona capacidades ao grafo
 for vertex in graph.vertex_set:
-  list_of_neighbors = neighbors[int(vertex)-1].split()
+  list_of_neighbors = neighbors[vertex-1].split()
   for i, value in enumerate(list_of_neighbors):
+    value = int(value)
     if((i%2) == 0):
       graph.add_arrow(vertex, value)
       j=int(value)
     else:
       graph.capacities[int(vertex)][j] = value
-  
-print(graph)
+
+# print(graph)
 #print('numero de vertices no grafo: ', len(graph.vertex_set))
 print('o fluxo maximo desse grafo eh: ', str(graph.ford_fulkerson(1, 7)))
