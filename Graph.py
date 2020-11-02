@@ -68,7 +68,7 @@ class Graph:
             s = sink
             while(s != source):
                 #adicionar funcao que extrai menor capacidade de um caminho
-                path_flow = min(path_flow, self.capacities[parent[s]][s])
+                path_flow = min(path_flow, self.capacities[augmenting_path[s]][s])
                 s = augmenting_path[s]
 
             max_flow = max_flow + path_flow
