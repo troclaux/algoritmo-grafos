@@ -82,6 +82,7 @@ class Graph:
             
         return max_flow
 
+    #testar ford isoladamente
     def BFS_ford(self, s, t, augmenting_path):
         queue = [s]
         visited = [s]
@@ -102,8 +103,8 @@ class Graph:
     def generate_residual_graph(self):
         residual_graph = self
         for parent in residual_graph.vertex_set:
-            for child in residual_graph.vertex_set[parent]:
-                residual_graph.capacities[parent][child] = self.capacities[parent][child]
+            for child in residual_graph.vertex_set[int(parent)]:
+                residual_graph.capacities[int(parent)][int(child)] = self.capacities[int(parent)][int(child)]
         return residual_graph
 
 
