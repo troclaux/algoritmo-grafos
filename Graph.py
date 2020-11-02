@@ -75,7 +75,7 @@ class Graph:
         while(queue):
             s = queue.pop(0)
             for neighbor in self.vertex_set[s]:
-                if neighbor not in visited:
+                if neighbor not in visited and self.capacities[s][neighbor] > 0:
                     print(' ' + str(s) + ' -> ' + str(neighbor))
                     queue.append(neighbor)
                     visited.append(neighbor)

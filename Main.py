@@ -15,6 +15,7 @@ file.seek(0)
 graph = Graph(number_of_vertices + 1)
 
 #adiciona vertices ao grafo
+#IMPORTANTE: para adicionar os vertices, a entrada precisa ter um '=' toda linha depois do vértice
 for line in file:
   line_without_enter = line.rstrip()
   separated_line = line_without_enter.split('=')
