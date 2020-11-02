@@ -74,7 +74,7 @@ class Graph:
             max_flow = max_flow + path_flow
             #porque declarar v?
             v = sink
-            while(v is not source):
+            while(v != source):
                 u = augmenting_path[v]
                 self.capacities[u][v] -= path_flow
                 self.capacities[v][u] += path_flow
