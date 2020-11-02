@@ -48,31 +48,20 @@ class Graph:
 
     #def compact(self):
 
-    #checar se a declaracao do infinito funciona corretamente com essa funcao
-    def extract_minimum_capacity_path(self, path):
-        minimum_capacity = float('inf')
-        for i in path:
-            if self.capacities[i] > 0 and self.capacities[i] < minimum_capacity:
-                minimum_capacity = i
-        return minimum_capacity
-
     def ford_fulkerson(self, source, sink):
         residual_graph = self.generate_residual_graph()
         max_flow = 0
         path_flow = 999
         augmenting_path = [-1]*(len(residual_graph.vertex_set) + 1)
-        # nao sei como determinar augmenting_path
-        #enquanto tiver caminho aumentante
+        #enquanto tiver caminho aumentante, aumentar o fluxo no grafo residual
         while( residual_graph.BFS_ford(source, sink, augmenting_path) ):
             s = sink
             #encontra a aresta com capacidade residual nao-nula e minima no caminho aumentante
             while(s != source):
-                #adicionar funcao que extrai menor capacidade de um caminho
                 path_flow = min(path_flow, residual_graph.capacities[augmenting_path[s]][s])
                 s = augmenting_path[s]
 
             max_flow = max_flow + path_flow
-            #porque declarar v? para nao alterar sink
             v = sink
             #atualiza as capacidades do grafo residual
             while(v != source):
@@ -83,7 +72,7 @@ class Graph:
 
         return max_flow
 
-    #testar ford isoladamente
+    #busca em profundidade que armazena o caminho aumentante para o algoritmo de ford fulkerson
     def BFS_ford(self, s, t, augmenting_path):
         queue = [s]
         visited = [s]
@@ -91,7 +80,6 @@ class Graph:
             u = queue.pop(0)
             for neighbor in self.vertex_set[u]:
                 if neighbor not in visited and self.capacities[u][neighbor] > 0:
-                    # print(' ' + str(u) + ' -> ' + str(neighbor))
                     queue.append(neighbor)
                     visited.append(neighbor)
                     augmenting_path[neighbor] = u
@@ -101,6 +89,7 @@ class Graph:
             print('busca em largura concluida')
             return False
 
+    #funcao que retorna o grafo residual construido a partir de um grafo qualquer
     def generate_residual_graph(self):
         residual_graph = self
         for parent in residual_graph.vertex_set:
