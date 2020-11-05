@@ -67,20 +67,20 @@ class Graph:
         augmenting_path = [-1]*(len(residual_graph.vertex_set) + 1)
         #enquanto existir um caminho aumentante, aumentar o fluxo no grafo residual
         while( residual_graph.BFS_ford(source, sink, augmenting_path) ):
-            s = sink
+            sink_buffer = sink
             #encontra o gargalo no caminho aumentante
-            while(s != source):
-                bottleneck = min(bottleneck, residual_graph.capacities[augmenting_path[s]][s])
-                s = augmenting_path[s]
+            while(sink_buffer != source):
+                bottleneck = min(bottleneck, residual_graph.capacities[augmenting_path[sink_buffer]][sink_buffer])
+                sink_buffer = augmenting_path[sink_buffer]
 
             max_flow = max_flow + bottleneck
-            v = sink
+            sink_buffer = sink
             #atualiza as capacidades do grafo residual
-            while(v != source):
-                u = augmenting_path[v]
-                residual_graph.capacities[u][v] -= bottleneck
-                residual_graph.capacities[v][u] += bottleneck
-                v = augmenting_path[v]
+            while(sink_buffer != source):
+                u = augmenting_path[sink_buffer]
+                residual_graph.capacities[u][sink_buffer] -= bottleneck
+                residual_graph.capacities[sink_buffer][u] += bottleneck
+                sink_buffer = augmenting_path[sink_buffer]
 
         return max_flow
 
