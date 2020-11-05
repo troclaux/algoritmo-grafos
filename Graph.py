@@ -64,6 +64,7 @@ class Graph:
         #inicializa o fluxo do gargalo como infinito(depois vai ser reduzido)
         bottleneck = float('inf')
         #inicializa o vetor que vai armazenar o caminho aumentante
+        #augmenting_path[child] = parent
         augmenting_path = [-1]*(len(residual_graph.vertex_set) + 1)
         #enquanto existir um caminho aumentante, aumentar o fluxo no grafo residual
         while( residual_graph.BFS_ford(source, sink, augmenting_path) ):
