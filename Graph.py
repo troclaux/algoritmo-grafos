@@ -74,13 +74,13 @@ class Graph:
                 sink_buffer = augmenting_path[sink_buffer]
 
             max_flow = max_flow + bottleneck
-            sink_buffer = sink
+            child_buffer = sink
             #atualiza as capacidades do grafo residual
-            while(sink_buffer != source):
-                u = augmenting_path[sink_buffer]
-                residual_graph.capacities[u][sink_buffer] -= bottleneck
-                residual_graph.capacities[sink_buffer][u] += bottleneck
-                sink_buffer = augmenting_path[sink_buffer]
+            while(child_buffer != source):
+                parent_buffer = augmenting_path[child_buffer]
+                residual_graph.capacities[child_buffer][parent_buffer] += bottleneck
+                residual_graph.capacities[parent_buffer][child_buffer] -= bottleneck
+                child_buffer = augmenting_path[child_buffer]
 
         return max_flow
 
