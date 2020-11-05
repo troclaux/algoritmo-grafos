@@ -14,13 +14,14 @@ file.seek(0)
 #constroi o grafo
 graph = Graph(number_of_vertices + 1)
 
-#adiciona vertices ao grafo
 #IMPORTANTE: para adicionar os vertices, a entrada precisa ter um '=' toda linha depois do vértice
 #tambem é melhor adicionar os vertices de forma crescente
 for line in file:
   line_without_enter = line.rstrip()
   separated_line = line_without_enter.split('=')
+  #adiciona vertices ao grafo
   graph.add_vertex(int(separated_line[0]))
+  #vincula vertices com seus vizinhos por meio de uma lista de adjacencia
   neighbors.append(separated_line[1])
 
 #adiciona capacidades ao grafo
