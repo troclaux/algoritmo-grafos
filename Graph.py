@@ -62,24 +62,24 @@ class Graph:
         #inicializa o fluxo
         max_flow = 0
         #inicializa o fluxo do gargalo como infinito(depois vai ser reduzido)
-        path_flow = float('inf')
+        bottleneck = float('inf')
         #inicializa o vetor que vai armazenar o caminho aumentante
         augmenting_path = [-1]*(len(residual_graph.vertex_set) + 1)
         #enquanto existir um caminho aumentante, aumentar o fluxo no grafo residual
         while( residual_graph.BFS_ford(source, sink, augmenting_path) ):
             s = sink
-            #encontra a aresta com capacidade residual nao-nula e minima no caminho aumentante
+            #encontra o gargalo no caminho aumentante
             while(s != source):
-                path_flow = min(path_flow, residual_graph.capacities[augmenting_path[s]][s])
+                bottleneck = min(bottleneck, residual_graph.capacities[augmenting_path[s]][s])
                 s = augmenting_path[s]
 
-            max_flow = max_flow + path_flow
+            max_flow = max_flow + bottleneck
             v = sink
             #atualiza as capacidades do grafo residual
             while(v != source):
                 u = augmenting_path[v]
-                residual_graph.capacities[u][v] -= path_flow
-                residual_graph.capacities[v][u] += path_flow
+                residual_graph.capacities[u][v] -= bottleneck
+                residual_graph.capacities[v][u] += bottleneck
                 v = augmenting_path[v]
 
         return max_flow
@@ -98,7 +98,6 @@ class Graph:
         if t in visited:
             return True
         else:
-            print('busca em largura concluida \n')
             return False
 
     #funcao que retorna o grafo residual construido a partir de um grafo qualquer
