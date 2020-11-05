@@ -1,5 +1,6 @@
 class Graph:
     def __init__(self, vertex_set_size):
+        #inicializa dicionario onde keys sao os vertices do grafo e values sao seus vertices vizinhos
         self.vertex_set = dict()
         self.time = 0
         self.discovery_time = []
@@ -49,15 +50,22 @@ class Graph:
     #def compact(self):
 
     def ford_fulkerson(self, source, sink):
+        #checa se a source e o sink estao presentes no grafo fornecido
         if source not in self.vertex_set:
             print('vertice de origem inserido nao foi localizado no grafo')
+            return -1
         if sink not in self.vertex_set:
             print('vertice de destino inserido nao foi localizado no grafo')
+            return -1
+        #gera o grafo residual
         residual_graph = self.generate_residual_graph()
+        #inicializa o fluxo
         max_flow = 0
+        #inicializa o fluxo do gargalo como infinito(depois vai ser reduzido)
         path_flow = float('inf')
+        #inicializa o vetor que vai armazenar o caminho aumentante
         augmenting_path = [-1]*(len(residual_graph.vertex_set) + 1)
-        #enquanto tiver caminho aumentante, aumentar o fluxo no grafo residual
+        #enquanto existir um caminho aumentante, aumentar o fluxo no grafo residual
         while( residual_graph.BFS_ford(source, sink, augmenting_path) ):
             s = sink
             #encontra a aresta com capacidade residual nao-nula e minima no caminho aumentante
