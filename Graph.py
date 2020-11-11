@@ -162,6 +162,26 @@ class Graph:
                     queue.append(neighbor)
                     visited.append(neighbor)
 
+    def get_hole(self, j, k):
+        pathvertex = []
+        in_path = []
+        imin = j
+        imax = k
+        i = imin
+        while i > imax - 4:
+            u = pathvertex[i]
+            h = imax + 1
+            for x in self.vertex_set[u]:
+                if in_path[x] >= i+4 and in_path[x] < h:
+                    h = in_path[x]
+            if h <= imax:
+                imin = i
+                imax = h
+                i = i + 1
+        print("vertex in the hole: ")
+        print(str(pathvertex[imin]) + str(pathvertex[imin + 1]) + str(pathvertex[imax]))
+
+
     def is_connected(self):
         for id in self.vertex_set:
             queue = [id]
