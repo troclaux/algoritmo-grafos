@@ -115,6 +115,7 @@ class Graph:
         size = 1 + len(self.vertex_set)
         self.not_in_hole =  [[[0] * size] *size] *size
         self.in_path = [0] * size
+        holes = []
 
         for u in self.vertex_set:
             self.in_path[int(u)] = 1
@@ -128,9 +129,9 @@ class Graph:
                             self.in_path[int(v)] = 0
             self.in_path[int(u)] = 0
         print('graph does not contain a hole')
-        #if len(cycle.vertex_set) % 2 == 1 and len(cycle.vertex_set<6):
-            #print('graph is even-hole-free')
-            #return True
+        if len(holes) % 2 == 1 and len(holes < 6):
+            print('graph is even-hole-free')
+            return True
 
     def process(self, a, b, c):
         self.in_path[int(c)] = 1
@@ -138,7 +139,7 @@ class Graph:
             if d not in self.vertex_set[a] and d not in self.vertex_set[b]:
                 # then abcd is P4 of G
                 if self.in_path[int(d)] == 1:
-                    self.get_hole(a,c)
+                    holes = self.get_hole(a,c)
                     print('Graph has a hole')
                     return False
                 elif self.not_in_hole[int(b)][int(c)][int(d)] == 0:
