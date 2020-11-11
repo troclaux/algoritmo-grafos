@@ -138,7 +138,7 @@ class Graph:
             if d not in self.vertex_set[a] and d not in self.vertex_set[b]:
                 # then abcd is P4 of G
                 if self.in_path[int(d)] == 1:
-                    self.get_hole(in_path(a, c))
+                    self.get_hole(a,c)
                     print('Graph has a hole')
                     return False
                 elif self.not_in_hole[int(b)][int(c)][int(d)] == 0:
@@ -164,6 +164,7 @@ class Graph:
                     visited.append(neighbor)
 
     def get_hole(self, j, k):
+        results = []
         pathvertex = []
         in_path = []
         imin = j
@@ -180,7 +181,11 @@ class Graph:
                 imax = h
                 i = i + 1
         print("vertex in the hole: ")
-        print(str(pathvertex[imin]) + str(pathvertex[imin + 1]) + str(pathvertex[imax]))
+        results.append(pathvertex[imin])
+        results.append(pathvertex[imin + 1])
+        results.append(pathvertex[imax])
+        print(str(results))
+        return results
 
 
     def is_connected(self):
