@@ -138,6 +138,7 @@ class Graph:
             if d not in self.vertex_set[a] and d not in self.vertex_set[b]:
                 # then abcd is P4 of G
                 if self.in_path[int(d)] == 1:
+                    self.get_hole(in_path(a, c))
                     print('Graph has a hole')
                     return False
                 elif self.not_in_hole[int(b)][int(c)][int(d)] == 0:
